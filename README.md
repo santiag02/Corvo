@@ -1,6 +1,6 @@
 # Corvo
 
-This is a tool that has as aim to use (intelX)[https://intelx.io] leaks and correlate them to figure out the most proeminent threat actors, families and of course, the number of leaks based in domains.
+This is a tool that has as aim to use [intelX](https://intelx.io) leaks and correlate them to figure out the most proeminent threat actors, families and of course, the number of leaks based in domains.
 
 As the first step you need send your IntelX API to do requests.
 After that if you want uso some date filter you need pass a date of beggining and ending with arguments '-a' for after and '-b' for before.
@@ -106,3 +106,6 @@ Total group names: {'unknown': 2}
 
 ## Workflow
 
+|![](https://github.com/santiag02/Corvo/blob/main/corvo/media/corvo_workflow.png)|
+|:---:|
+|Corvo - Workflow|
