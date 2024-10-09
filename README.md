@@ -106,6 +106,6 @@ Total group names: {'unknown': 2}
 
 ## Workflow
 
-|![](https://github.com/santiag02/Corvo/blob/main/corvo/media/corvo_workflow.png)|
+|![](https://github.com/santiag02/Corvo/blob/main/media/corvo_workflow.png)|
 |:---:|
 |Corvo - Workflow|
