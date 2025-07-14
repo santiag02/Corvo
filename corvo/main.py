@@ -10,6 +10,7 @@ import json
 import argparse
 import configparser
 from pathlib import Path
+import time
 
 KEY_PATH = os.path.join(os.path.expanduser("~"), '.corvo.ini')
 
@@ -158,7 +159,7 @@ def main():
                             output.write('\n')
                 output.write('\n')
                 output.write(f"Grupos: {info_groups}")
-            print('Check the result at corvo.leaks file')
+            print('Check the result at corvo leaks file')
             exit()
 
         if args.term:
@@ -167,7 +168,11 @@ def main():
             domains.setdefault(now, [args.term])
         
         if args.filepath:
-            domains = leakP.read_domain_file('corvo.domains')
+            if os.path.isfile(args.filepath):
+                domains = leakP.read_domain_file(args.filepath)
+            else:
+                print("[-] No filepath finded")
+                exit()
             
         for key, items in domains.items():
             if args.filepath:
@@ -283,7 +288,11 @@ def main():
 
                                     if not group_name:
                                         result_file_tree = x.search(term=value, datefrom=date_after, dateto=date_before, buckets=['leaks.logs'], maxresults=20)
-                                        file_tree_storageid = result_file_tree['records'][0]['storageid']
+                                        time.sleep(1.5)
+                                        try:
+                                            file_tree_storageid = result_file_tree['records'][0]['storageid']
+                                        except Exception as err:
+                                            break
                                         file_fist_20_lines = x.FILE_PREVIEW(ctype=1, mediatype=24, format=0, sid=file_tree_storageid, bucket=bucket, lines=20 )
                                         group_name = leakP.check_group_name(file_fist_20_lines)
                                     
@@ -315,10 +324,11 @@ def main():
                 output.write('\n\n')
                 print(f'Total group names: {total_group_names}')
                 #print(f'Convert group names: {leakP.convert_group_names(total_group_names)}')
+                company_leak = []
+                client_leak = []
             
             total_group_names = {}
-            company_leak = []
-            client_leak = []
+            
 
         print('Check the result at corvo.leaks file')
 
